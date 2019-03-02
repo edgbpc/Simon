@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Simon</string>
+    <string name="red_button_text">Red</string>
+    <string name="blue_button_text">Blue</string>
+    <string name="green">Green</string>
+    <string name="green_button_text">Green</string>
+    <string name="yellow_button_text">Yellow</string>
+    <string name="start_button_text">Start</string>
+</resources>
