@@ -34,11 +34,11 @@ class SimonViewFragment: Fragment() {
         return view
     }
 
-    fun runUIUpdate(args: ArrayList<Int>?) {
+    fun runUIUpdate(args: List<Int>?) {
 
         activity?.let {activity ->
-            for (index in args.orEmpty()) {
-                val view = when (index) {
+            for (element in 0 until args!!.size) {
+                val view = when (args[element]) {
                     0 -> redButton
                     1 -> blueButton
                     2 -> yellowButton
@@ -90,24 +90,28 @@ class SimonViewFragment: Fragment() {
                     }
                 }
 
-
-                if (index == 0){
-                    redButtonAnimator?.startDelay = (index * 400).toLong()
+                if (args[element] == 0){
+                    redButtonAnimator?.startDelay = (element * 400).toLong()
+                    redButtonAnimator?.setDuration(400)
                     redButtonAnimator?.start()
+
                 }
 
-                if (index == 1){
-                    blueButtonAnimator?.startDelay = (index * 400).toLong()
+                if (args[element] == 1){
+                    blueButtonAnimator?.startDelay = (element * 400).toLong()
+                    blueButtonAnimator?.setDuration(400)
                     blueButtonAnimator?.start()
                 }
 
-                if (index == 2){
-                    yellowButtonAnimator?.startDelay = (index * 400).toLong()
+                if (args[element] == 2){
+                    yellowButtonAnimator?.startDelay = (element * 400).toLong()
+                    yellowButtonAnimator.setDuration(400)
                     yellowButtonAnimator?.start()
                 }
 
-                if (index == 3){
-                    greenButtonAnimator?.startDelay = (index * 400).toLong()
+                if (args[element] == 3){
+                    greenButtonAnimator?.startDelay = (element * 400).toLong()
+                    greenButtonAnimator?.setDuration(400)
                     greenButtonAnimator?.start()
                 }
 

@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
 
     private var viewFragment: SimonViewFragment? = null
     private var modelFragment: SimonModelFragment? = null
+    private var gameModel: SimonModel? = SimonModel()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -44,11 +47,11 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
     }
 
     override fun startButtonPressed() {
-        modelFragment?.addToGamePlaySequence()
+       // modelFragment?.addToGamePlaySequence()
         modelFragment?.startSequence()
     }
 
     override fun sequenceTriggerd() {
-        viewFragment?.runUIUpdate(modelFragment?.gamePlaySequence)
+        viewFragment?.runUIUpdate(gameModel?.createAGameBoard(Testing))
     }
 }
