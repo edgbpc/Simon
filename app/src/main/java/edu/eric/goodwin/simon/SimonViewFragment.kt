@@ -34,9 +34,10 @@ class SimonViewFragment: Fragment() {
         return view
     }
 
-    fun runUIUpdate() {
+    fun runUIUpdate(args: ArrayList<Int>?) {
+
         activity?.let {activity ->
-            for (index in 0 until 4) {
+            for (index in args.orEmpty()) {
                 val view = when (index) {
                     0 -> redButton
                     1 -> blueButton
@@ -89,7 +90,26 @@ class SimonViewFragment: Fragment() {
                     }
                 }
 
-                greenButtonAnimator?.start()
+
+                if (index == 0){
+                    redButtonAnimator?.startDelay = (index * 400).toLong()
+                    redButtonAnimator?.start()
+                }
+
+                if (index == 1){
+                    blueButtonAnimator?.startDelay = (index * 400).toLong()
+                    blueButtonAnimator?.start()
+                }
+
+                if (index == 2){
+                    yellowButtonAnimator?.startDelay = (index * 400).toLong()
+                    yellowButtonAnimator?.start()
+                }
+
+                if (index == 3){
+                    greenButtonAnimator?.startDelay = (index * 400).toLong()
+                    greenButtonAnimator?.start()
+                }
 
 
             }

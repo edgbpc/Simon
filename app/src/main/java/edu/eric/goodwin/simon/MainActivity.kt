@@ -40,14 +40,15 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
         viewFragment?.listener = this
         modelFragment?.listener = this
 
+
     }
 
     override fun startButtonPressed() {
+        modelFragment?.addToGamePlaySequence()
         modelFragment?.startSequence()
     }
 
     override fun sequenceTriggerd() {
-        Log.e("TAG", "Sequence Triggered")
-        viewFragment?.runUIUpdate()
+        viewFragment?.runUIUpdate(modelFragment?.gamePlaySequence)
     }
 }
