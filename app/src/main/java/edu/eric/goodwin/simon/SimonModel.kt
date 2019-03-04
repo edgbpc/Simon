@@ -26,9 +26,7 @@ class SimonModel {
 
     private var gameMode: Int = 0
 
-    private var wasPlayerAnswerCorrect: Boolean? = null
     private var expectedAnswerIs: Int = 0
-    //private var receivedAnswer: Int? = null
     private var currentPlayerPosition: Int = 0
     private var gameBoardColors = ArrayList<Int>()
     private var playerScore: Int = 0
@@ -48,13 +46,15 @@ class SimonModel {
     }
 
     fun resetGame(){
+        expectedAnswerIs = 0
         gameBoardColors = ArrayList<Int>()
         currentPlayerPosition = 0
         playerScore = 0
         numCorrectAnswersGiven = 0
         gameWinner = -1
         roundWinner = -1
-        round = 1
+        round = 0
+        numCorrectAnswersForARound = 0
     }
 
     fun prepareForNewRound(){
@@ -109,27 +109,6 @@ class SimonModel {
     fun calculateScore() {
         playerScore = playerScore + (10 * gameMode)
         Log.e("TAG", "score is " + playerScore)
-
-    }
-
-    fun createAGameBoard() {
-//        if (gameMode == 2) {
-//            gameBoardColors = List(Testing) { Random.nextInt(0, 4) }
-//        }
-//        if (gameMode == 3) {
-//            gameBoardColors = List(Easy) { Random.nextInt(0, 4) }
-//        }
-//        if (gameMode == 5) {
-//            gameBoardColors = List(Regular) { Random.nextInt(0, 4) }
-//        }
-//        if (gameMode == 10) {
-//            gameBoardColors = List(Hard) { Random.nextInt(0, 4) }
-//        }
-//        if (gameMode == 50) {
-//            gameBoardColors = List(Ultra) { Random.nextInt(0, 4) }
-//        } else {
-//
-//        }
 
     }
 

@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_simon.*
 
 class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, SimonModelFragment.Listener {
 
@@ -58,14 +59,15 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
                         .add(modelFragment!!, SIMON_FRAG_TAG)
                             .commit()
                 }
+
                 simonViewFragment?.listener = this
                 modelFragment?.listener = this
 
 
-               } else {
+            } else {
                         Toast.makeText(applicationContext, "Select A Difficulty", Toast.LENGTH_SHORT).show()
                     }
-                }
+        }
     }
 
     override fun startButtonPressed() {
@@ -83,11 +85,15 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
 
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play Again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
         }
         if (gameModel?.isARoundWinner() == 1){
             gameModel?.prepareForNewRound()
@@ -102,11 +108,15 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
 
         } else if(gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
         }
         if (gameModel?.isARoundWinner() == 1){
             gameModel?.prepareForNewRound()
@@ -120,11 +130,15 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
 
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
         }
         if (gameModel?.isARoundWinner() == 1){
             gameModel?.prepareForNewRound()
@@ -138,15 +152,19 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
 
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            simonViewFragment?.disableColorButtons()
+
         }
         if (gameModel?.isARoundWinner() == 1){
             gameModel?.prepareForNewRound()
             modelFragment?.startSequence()
         }
     }
+
 }

@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_simon.view.*
 
 class SimonViewFragment: Fragment() {
 
-
     interface StateListener {
         fun startButtonPressed()
         fun redButtonPressed()
@@ -34,6 +33,7 @@ class SimonViewFragment: Fragment() {
         view.startButton.setOnClickListener {
             listener?.startButtonPressed()
             startButton.setEnabled(false)
+            enableColorButtons()
         }
         view.redButton.setOnClickListener {
             listener?.redButtonPressed()
@@ -49,8 +49,12 @@ class SimonViewFragment: Fragment() {
             listener?.greenButtonPressed()
         }
 
+        view.redButton.setEnabled(false)
+        view.blueButton.setEnabled(false)
+        view.greenButton.setEnabled(false)
+        view.yellowButton.setEnabled(false)
 
-        return view
+       return view
 
 
     }
@@ -143,4 +147,19 @@ class SimonViewFragment: Fragment() {
     fun enableStartButton(){
         startButton.setEnabled(true)
     }
+
+
+    fun enableColorButtons(){
+        redButton.setEnabled(true)
+        blueButton.setEnabled(true)
+        greenButton.setEnabled(true)
+        yellowButton.setEnabled(true)
+    }
+    fun disableColorButtons(){
+        redButton.setEnabled(false)
+        blueButton.setEnabled(false)
+        greenButton.setEnabled(false)
+        yellowButton.setEnabled(false)
+    }
+
 }
