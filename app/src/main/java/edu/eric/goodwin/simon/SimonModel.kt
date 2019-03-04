@@ -49,12 +49,16 @@ class SimonModel {
         expectedAnswerIs = 0
         gameBoardColors = ArrayList<Int>()
         currentPlayerPosition = 0
-        playerScore = 0
+   //     playerScore = 0
         numCorrectAnswersGiven = 0
         gameWinner = -1
         roundWinner = -1
         round = 0
         numCorrectAnswersForARound = 0
+    }
+
+    fun resetScore(){
+        playerScore = 0
     }
 
     fun prepareForNewRound(){
@@ -93,8 +97,8 @@ class SimonModel {
         return gameWinner
     }
 
-    fun getPlayerScore(): String {
-        return playerScore.toString()
+    fun getPlayerScore(): Int {
+        return playerScore
     }
 
     fun getGameBoard(): List<Int> {

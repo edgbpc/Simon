@@ -6,12 +6,17 @@ import android.util.Log
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.RadioButton
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_score.*
 import kotlinx.android.synthetic.main.fragment_simon.*
 
-class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, SimonModelFragment.Listener {
+class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, SimonModelFragment.Listener
+
+{
+
+
 
     companion object
     {
@@ -22,7 +27,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
     private var simonViewFragment: SimonViewFragment? = null
     private var modelFragment: SimonModelFragment? = null
     private var scoreViewFragment: ScoreViewFragment? = null
-    private var scoreModelFragment: ScoreModelFragment? = null
+   // private var scoreModelFragment: ScoreModelFragment? = null
 
     private var gameModel: SimonModel? = SimonModel()
 
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         difficultySelection.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
@@ -187,34 +193,51 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
         }
     }
 
-private fun showScoreScreen(){
-    scoreViewFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as? ScoreViewFragment
-    if (scoreViewFragment == null)
-    {
-        scoreViewFragment = ScoreViewFragment()
-        supportFragmentManager.beginTransaction()
-            .remove(simonViewFragment!!)
-            .add(R.id.mainContainer, scoreViewFragment!!)
-            .commit()
-
-        scoreModelFragment = supportFragmentManager.findFragmentByTag(SCORE_FRAG_TAG) as? ScoreModelFragment
-        if (scoreModelFragment == null)
-        {
-            scoreModelFragment = ScoreModelFragment()
+    private fun showScoreScreen() {
+        scoreViewFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as? ScoreViewFragment
+        if (scoreViewFragment == null) {
+            scoreViewFragment = ScoreViewFragment()
             supportFragmentManager.beginTransaction()
-                .add(scoreModelFragment!!, SCORE_FRAG_TAG)
+                .remove(simonViewFragment!!)
+                .add(R.id.mainContainer, scoreViewFragment!!)
                 .commit()
+
+//            scoreModelFragment = supportFragmentManager.findFragmentByTag(SCORE_FRAG_TAG) as? ScoreModelFragment
+//            if (scoreModelFragment == null) {
+//                scoreModelFragment = ScoreModelFragment()
+//                supportFragmentManager.beginTransaction()
+//                    .add(scoreModelFragment!!, SCORE_FRAG_TAG)
+//                    .commit()
+//            }
+
+            scoreViewFragment?.receieveScore(gameModel!!.getPlayerScore())
+            scoreViewFragment?.listener = object: ScoreViewFragment.NewGameButtonListener {
+
+                override fun newGameButtonPressed() {
+                    //   scoreModelFragment = supportFragmentManager.findFragmentByTag(SCORE_FRAG_TAG) as? ScoreModelFragment
+                    supportFragmentManager.beginTransaction()
+                        .remove(scoreViewFragment!!)
+                        .commit()
+                    difficultySelection.setVisibility(View.VISIBLE)
+                    playButton.setVisibility(View.VISIBLE)
+
+                    //  scoreModelFragment?.newGame()
+                    Log.e("TAG", "Stuff")
+                }
+
+            }
+
+
         }
-
-
-
-        scoreViewFragment?.displayScore(gameModel!!.getPlayerScore())
-
-
     }
 
+//    override fun beginNewGame() {
+//
+//        Log.e("Tag", "beginNewGame() pressed")
+//
+//    }
+
 
 
 }
 
-}
