@@ -1,6 +1,7 @@
 package edu.eric.goodwin.simon
 
 import android.util.Log
+import android.widget.Toast
 import kotlin.random.Random
 
 const val Red = 0
@@ -27,25 +28,47 @@ class SimonModel {
 
     private var wasPlayerAnswerCorrect: Boolean? = null
     private var expectedAnswerIs: Int = 0
-    private var receivedAnswer: Int? = null
+    //private var receivedAnswer: Int? = null
     private var currentPlayerPosition: Int = 0
     private var gameBoardColors: List<Int> = emptyList()
     private var playerScore: Int = 0
+    private var numCorrectAnswersGiven: Int = 0
+    private var gameWinner: Int = -1
 
 
     val round: Int = 0
 
-    fun determineIfExpectedAnswerWasGiven() {
+    fun resetGame(){
+        gameBoardColors = emptyList()
+        currentPlayerPosition = 0
+        playerScore = 0
+        numCorrectAnswersGiven = 0
+        gameWinner = -1
+
+    }
+
+    fun determineIfExpectedAnswerWasGiven(receivedAnswer: Int) {
         expectedAnswerIs = gameBoardColors[currentPlayerPosition]
         if (receivedAnswer == expectedAnswerIs) {
+            Log.e("TAG", "Correct Answer Given")
             // award points
             // advance position
-            currentPlayerPosition.plus(1)
+            currentPlayerPosition++
+            numCorrectAnswersGiven++
             // continue game
         } else {
-            //load new fragment
+            Log.e("TAG", "Incorrect Answer Given")
+            gameWinner = 0
             //game over
         }
+        if (numCorrectAnswersGiven == gameBoardColors.size){
+            gameWinner = 1
+            Log.e("TAG", "All colors given")
+        }
+    }
+
+    fun isAWinner(): Int{
+        return gameWinner
     }
 
     fun getPlayerScore(): Int {
@@ -63,8 +86,8 @@ class SimonModel {
 
     }
 
-    fun createAGameBoard(gameMode: Int): List<Int>? {
-
+    fun createAGameBoard(): List<Int>? {
+        Log.e("tag", "creating gameboard with difficulity " + gameMode)
         if (gameMode == 2) {
             gameBoardColors = List(Testing) { Random.nextInt(0, 4) }
         }
@@ -80,7 +103,7 @@ class SimonModel {
         if (gameMode == 50) {
             gameBoardColors = List(Ultra) { Random.nextInt(0, 4) }
         } else {
-            Log.e("TAG", "Error - gameMode not selected.")
+
         }
 
         return gameBoardColors

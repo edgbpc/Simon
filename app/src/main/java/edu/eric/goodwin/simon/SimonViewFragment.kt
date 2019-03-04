@@ -17,8 +17,13 @@ import kotlinx.android.synthetic.main.fragment_simon.view.*
 
 class SimonViewFragment: Fragment() {
 
+
     interface StateListener {
         fun startButtonPressed()
+        fun redButtonPressed()
+        fun blueButtonPressed()
+        fun yellowButtonPressed()
+        fun greenButtonPressed()
     }
 
     var listener: StateListener? = null
@@ -27,11 +32,32 @@ class SimonViewFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_simon, container, false)
 
         view.startButton.setOnClickListener {
+            Log.e("TAG", "start button clicked")
             listener?.startButtonPressed()
+            startButton.setEnabled(false)
+        }
+        view.redButton.setOnClickListener {
+            Log.e("TAG", "red button clicked")
+            listener?.redButtonPressed()
 
         }
+        view.blueButton.setOnClickListener {
+            Log.e("TAG", "blue button clicked")
+            listener?.blueButtonPressed()
+        }
+        view.yellowButton.setOnClickListener {
+            Log.e("TAG", "yellow button clicked")
+            listener?.yellowButtonPressed()
+        }
+        view.greenButton.setOnClickListener {
+            Log.e("TAG", "green button clicked")
+            listener?.greenButtonPressed()
+        }
+
 
         return view
+
+
     }
 
     fun runUIUpdate(args: List<Int>?) {
@@ -115,8 +141,11 @@ class SimonViewFragment: Fragment() {
                     greenButtonAnimator?.start()
                 }
 
-
             }
         }
+    }
+
+    fun enableStartButton(){
+        startButton.setEnabled(true)
     }
 }

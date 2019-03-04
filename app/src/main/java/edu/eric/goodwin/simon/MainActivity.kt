@@ -80,6 +80,63 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
     }
 
     override fun sequenceTriggerd() {
-        simonViewFragment?.runUIUpdate(gameModel?.createAGameBoard(Testing))
+        simonViewFragment?.runUIUpdate(gameModel?.createAGameBoard())
+    }
+
+    override fun redButtonPressed() {
+        gameModel?.determineIfExpectedAnswerWasGiven(0)
+        if (gameModel?.isAWinner() == 1){
+            Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+
+        } else if (gameModel?.isAWinner() == 0){
+            Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+
+        }
+    }
+
+    override fun blueButtonPressed() {
+        gameModel?.determineIfExpectedAnswerWasGiven(1)
+        if (gameModel?.isAWinner() == 1) {
+            Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+        } else if(gameModel?.isAWinner() == 0){
+            Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+
+        }
+    }
+
+    override fun yellowButtonPressed() {
+        gameModel?.determineIfExpectedAnswerWasGiven(2)
+        if (gameModel?.isAWinner() == 1){
+            Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+        } else if (gameModel?.isAWinner() == 0){
+            Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+
+        }
+    }
+
+    override fun greenButtonPressed() {
+        gameModel?.determineIfExpectedAnswerWasGiven(3)
+        if (gameModel?.isAWinner() == 1){
+            Toast.makeText(applicationContext, "YOU WIN", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+        } else if (gameModel?.isAWinner() == 0){
+            Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
+            simonViewFragment?.enableStartButton()
+            gameModel?.resetGame()
+
+        }
     }
 }

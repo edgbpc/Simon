@@ -27,18 +27,18 @@
             android:text="@string/green_button_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/yellowButton" app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/greenButton" app:layout_constraintStart_toStartOf="parent"
             style="@style/AppTheme.greenButton"
-            app:layout_constraintEnd_toStartOf="@+id/greenButton" android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/yellowButton" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/redButton"/>
     <Button
             android:text="@string/yellow_button_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/greenButton" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/yellowButton" app:layout_constraintEnd_toEndOf="parent"
             style="@style/AppTheme.yellowButton"
-            app:layout_constraintStart_toEndOf="@+id/yellowButton" android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toEndOf="@+id/greenButton" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/blueButton"/>
     <Button
