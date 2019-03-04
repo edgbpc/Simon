@@ -96,8 +96,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play Again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
-            gameModel?.resetGame()
-            gameModel?.resetScore()
+         //   gameModel?.resetGame()
+         //   gameModel?.resetScore()
 
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
@@ -121,15 +121,13 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             showScoreScreen()
 
 
-
         } else if(gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
-            gameModel?.resetGame()
-            gameModel?.resetScore()
+         //   gameModel?.resetGame()
+         //   gameModel?.resetScore()
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
-
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -148,15 +146,13 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             showScoreScreen()
 
 
-
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
-            gameModel?.resetGame()
-            gameModel?.resetScore()
+          //  gameModel?.resetGame()
+          //  gameModel?.resetScore()
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
-
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -178,11 +174,10 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
-            gameModel?.resetGame()
-            gameModel?.resetScore()
+          //  gameModel?.resetGame()
+          //  gameModel?.resetScore()
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
-
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -200,10 +195,14 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
                 .add(R.id.mainContainer, scoreViewFragment!!)
                 .commit()
 
-            scoreViewFragment?.receieveScore(gameModel!!.getPlayerScore())
+            scoreViewFragment?.receieveScore(gameModel!!.getFinalScore())
             scoreViewFragment?.listener = object: ScoreViewFragment.NewGameButtonListener {
 
                 override fun newGameButtonPressed() {
+                    if (gameModel?.isAWinner() == 0){
+                        gameModel?.resetScore()
+                        gameModel?.resetGame()
+                    }
                     supportFragmentManager.beginTransaction()
                         .remove(scoreViewFragment!!)
                         .commit()

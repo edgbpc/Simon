@@ -41,6 +41,12 @@ class SimonModel {
 
     }
 
+    fun scoreAccumulator(){
+        finalScore += playerScore
+
+
+    }
+
     fun resetGame(){
         expectedAnswerIs = 0
         gameBoardColors = ArrayList<Int>()
@@ -55,6 +61,7 @@ class SimonModel {
 
     fun resetScore(){
         playerScore = 0
+        finalScore = 0
     }
 
     fun prepareForNewRound(){
@@ -62,6 +69,7 @@ class SimonModel {
         roundWinner = -1
         numCorrectAnswersForARound = 0
         addToGameBoardColors()
+        playerScore = 0
 
     }
 
@@ -76,13 +84,13 @@ class SimonModel {
             // continue game
         } else {
             gameWinner = 0
-            finalScore = playerScore
             //game over
         }
         if (numCorrectAnswersForARound == gameBoardColors.size){
             roundWinner = 1
             round++
-
+            // player must win a round to get points, not just get a correct color in a round
+            scoreAccumulator()
         }
 
         if (round == gameMode){
