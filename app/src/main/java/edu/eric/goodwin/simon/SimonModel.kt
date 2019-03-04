@@ -4,11 +4,6 @@ import android.util.Log
 import android.widget.Toast
 import kotlin.random.Random
 
-const val Red = 0
-const val Blue = 1
-const val Yellow = 2
-const val Green = 3
-
 const val Testing = 2
 const val Easy = 3
 const val Regular = 5
@@ -34,6 +29,7 @@ class SimonModel {
     private var gameWinner: Int = -1
     private var roundWinner: Int = -1
     private var numCorrectAnswersForARound: Int = 0
+    private var finalScore: Int = 0
 
 
     private var round: Int = 0
@@ -80,6 +76,7 @@ class SimonModel {
             // continue game
         } else {
             gameWinner = 0
+            finalScore = playerScore
             //game over
         }
         if (numCorrectAnswersForARound == gameBoardColors.size){
@@ -91,6 +88,10 @@ class SimonModel {
         if (round == gameMode){
             gameWinner = 1
         }
+    }
+
+    fun getFinalScore(): Int{
+        return finalScore
     }
 
     fun isAWinner(): Int{
@@ -113,7 +114,6 @@ class SimonModel {
     fun calculateScore() {
         playerScore = playerScore + (10 * gameMode)
         Log.e("TAG", "score is " + playerScore)
-
     }
 
     fun setDifficulty(difficulty: String) {

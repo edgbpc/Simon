@@ -6,28 +6,21 @@ import android.util.Log
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.RadioButton
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_score.*
-import kotlinx.android.synthetic.main.fragment_simon.*
+
 
 class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, SimonModelFragment.Listener
 
 {
-
-
-
     companion object
     {
         const val SIMON_FRAG_TAG = "SimonFragment"
-        const val SCORE_FRAG_TAG = "ScoreFragment"
     }
 
     private var simonViewFragment: SimonViewFragment? = null
     private var modelFragment: SimonModelFragment? = null
     private var scoreViewFragment: ScoreViewFragment? = null
-   // private var scoreModelFragment: ScoreModelFragment? = null
 
     private var gameModel: SimonModel? = SimonModel()
 
@@ -104,6 +97,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU LOST. Play Again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            gameModel?.resetScore()
+
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
 
@@ -131,6 +126,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            gameModel?.resetScore()
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
 
@@ -157,6 +153,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            gameModel?.resetScore()
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
 
@@ -182,6 +179,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
+            gameModel?.resetScore()
             simonViewFragment?.disableColorButtons()
             showScoreScreen()
 
@@ -202,42 +200,18 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
                 .add(R.id.mainContainer, scoreViewFragment!!)
                 .commit()
 
-//            scoreModelFragment = supportFragmentManager.findFragmentByTag(SCORE_FRAG_TAG) as? ScoreModelFragment
-//            if (scoreModelFragment == null) {
-//                scoreModelFragment = ScoreModelFragment()
-//                supportFragmentManager.beginTransaction()
-//                    .add(scoreModelFragment!!, SCORE_FRAG_TAG)
-//                    .commit()
-//            }
-
             scoreViewFragment?.receieveScore(gameModel!!.getPlayerScore())
             scoreViewFragment?.listener = object: ScoreViewFragment.NewGameButtonListener {
 
                 override fun newGameButtonPressed() {
-                    //   scoreModelFragment = supportFragmentManager.findFragmentByTag(SCORE_FRAG_TAG) as? ScoreModelFragment
                     supportFragmentManager.beginTransaction()
                         .remove(scoreViewFragment!!)
                         .commit()
                     difficultySelection.setVisibility(View.VISIBLE)
                     playButton.setVisibility(View.VISIBLE)
-
-                    //  scoreModelFragment?.newGame()
-                    Log.e("TAG", "Stuff")
                 }
-
             }
-
-
         }
     }
-
-//    override fun beginNewGame() {
-//
-//        Log.e("Tag", "beginNewGame() pressed")
-//
-//    }
-
-
-
 }
 
