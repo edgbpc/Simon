@@ -30,6 +30,8 @@ class SimonModel {
     private var roundWinner: Int = -1
     private var numCorrectAnswersForARound: Int = 0
     private var finalScore: Int = 0
+    private var correctGuess: Boolean = false
+    private var gameSpeed: Long = 0
 
 
     private var round: Int = 0
@@ -73,6 +75,10 @@ class SimonModel {
 
     }
 
+    fun getCorrectGuess(): Boolean {
+        return correctGuess
+    }
+
     fun determineIfExpectedAnswerWasGiven(receivedAnswer: Int) {
         expectedAnswerIs = gameBoardColors[currentPlayerPosition]
         if (receivedAnswer == expectedAnswerIs) {
@@ -81,6 +87,7 @@ class SimonModel {
             // advance position
             currentPlayerPosition++
             numCorrectAnswersForARound = numCorrectAnswersForARound + 1
+            correctGuess = true
             // continue game
         } else {
             gameWinner = 0
@@ -124,18 +131,26 @@ class SimonModel {
         Log.e("TAG", "score is " + playerScore)
     }
 
+    fun getGameSpeed(): Long {
+        return gameSpeed
+    }
+
     fun setDifficulty(difficulty: String) {
         if (difficulty == "Easy") {
             gameMode = Easy
+            gameSpeed = 500
         }
         if (difficulty == "Regular") {
             gameMode = Regular
+            gameSpeed = 300
         }
         if (difficulty == "Hard") {
             gameMode = Hard
+            gameSpeed = 200
         }
         if (difficulty == "Ultra") {
             gameMode = Ultra
+            gameSpeed = 100
         }
     }
 }

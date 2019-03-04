@@ -59,7 +59,7 @@ class SimonViewFragment: Fragment() {
 
     }
 
-    fun runUIUpdate(args: List<Int>?) {
+    fun runUIUpdate(args: List<Int>?, gameSpeed: Long) {
 
         activity?.let {activity ->
             for (element in 0 until args!!.size ) {
@@ -117,26 +117,26 @@ class SimonViewFragment: Fragment() {
 
                 if (args[element] == 0){
                     redButtonAnimator?.startDelay = (element * 400).toLong()
-                    redButtonAnimator?.setDuration(400)
+                    redButtonAnimator?.setDuration(gameSpeed)
                     redButtonAnimator?.start()
 
                 }
 
                 if (args[element] == 1){
                     blueButtonAnimator?.startDelay = (element * 400).toLong()
-                    blueButtonAnimator?.setDuration(400)
+                    blueButtonAnimator?.setDuration(gameSpeed)
                     blueButtonAnimator?.start()
                 }
 
                 if (args[element] == 2){
                     yellowButtonAnimator?.startDelay = (element * 400).toLong()
-                    yellowButtonAnimator.setDuration(400)
+                    yellowButtonAnimator.setDuration(gameSpeed)
                     yellowButtonAnimator?.start()
                 }
 
                 if (args[element] == 3){
                     greenButtonAnimator?.startDelay = (element * 400).toLong()
-                    greenButtonAnimator?.setDuration(400)
+                    greenButtonAnimator?.setDuration(gameSpeed)
                     greenButtonAnimator?.start()
                 }
 

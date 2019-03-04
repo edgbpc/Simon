@@ -1,1 +1,32 @@
+The main issue that I could not solve was in regards to increasing difficulty.
+Difficulty in my app is essentially the length of the game goes on and how fast the next button is flashed.
+based on the difficulty.
+I had found a way via Animator Set but then I could not support Lollipop.
+I also do not control how long a user has to make a selection.  I started to look into timer.schedule()
+but I would need to find a way to restart the timer for each round.
+
+
+Other then that,
+I have the four colors implemented, each one flashes their own color.  The set grows as a user selects correctly.
+Scores accumulate as long as the user wins the game.  The final score resets if the user loses a round.
+A round is one pass as the color set grows.  A game is when the color set as reach maximum based on difficulty.
+
+The difficulty selection, game board, and score screen are indepedent of each other's views.  I add and remove fragments
+depending if the gameboard is active or if the score screen is active.  If user selects to play another game,
+the score screen is removed and the difficulty selection screen is shown.
+
+The gameboard screen shows when a difficutly is selected and Start is pressed.
+
+I disable the start button when the round is going and the color buttons are disabled if the start button is clickable.
+I found that if people get a bit "click happy" then you could send a lot animation requests that seemed to get processed
+indepedent of each other with expected results.
+
+Another issue i had was regrading updating the score text in view.
+I tried multiple arranagments of sending the data via the Activity to the View and updating via function call but it
+would crash.
+
+I ended up sending the data to the view, stored in a variable, and then the view looks at that local variable
+
+
+
 
