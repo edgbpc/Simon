@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_score.*
 import kotlinx.android.synthetic.main.fragment_simon.*
 
 class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, SimonModelFragment.Listener {
@@ -15,11 +16,13 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
     companion object
     {
         const val SIMON_FRAG_TAG = "SimonFragment"
+        const val SCORE_FRAG_TAG = "ScoreFragment"
     }
 
     private var simonViewFragment: SimonViewFragment? = null
     private var modelFragment: SimonModelFragment? = null
     private var scoreViewFragment: ScoreViewFragment? = null
+    private var scoreModelFragment: ScoreModelFragment? = null
 
     private var gameModel: SimonModel? = SimonModel()
 
@@ -184,7 +187,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
         }
     }
 
-fun showScoreScreen(){
+private fun showScoreScreen(){
     scoreViewFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as? ScoreViewFragment
     if (scoreViewFragment == null)
     {
@@ -193,6 +196,19 @@ fun showScoreScreen(){
             .remove(simonViewFragment!!)
             .add(R.id.mainContainer, scoreViewFragment!!)
             .commit()
+
+        scoreModelFragment = supportFragmentManager.findFragmentByTag(SCORE_FRAG_TAG) as? ScoreModelFragment
+        if (scoreModelFragment == null)
+        {
+            scoreModelFragment = ScoreModelFragment()
+            supportFragmentManager.beginTransaction()
+                .add(scoreModelFragment!!, SCORE_FRAG_TAG)
+                .commit()
+        }
+
+
+
+        scoreViewFragment?.displayScore(gameModel!!.getPlayerScore())
 
 
     }

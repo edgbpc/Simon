@@ -93,8 +93,8 @@ class SimonModel {
         return gameWinner
     }
 
-    fun getPlayerScore(): Int {
-        return playerScore
+    fun getPlayerScore(): String {
+        return playerScore.toString()
     }
 
     fun getGameBoard(): List<Int> {
