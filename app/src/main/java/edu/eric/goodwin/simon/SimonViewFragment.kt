@@ -32,25 +32,20 @@ class SimonViewFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_simon, container, false)
 
         view.startButton.setOnClickListener {
-            Log.e("TAG", "start button clicked")
             listener?.startButtonPressed()
             startButton.setEnabled(false)
         }
         view.redButton.setOnClickListener {
-            Log.e("TAG", "red button clicked")
             listener?.redButtonPressed()
 
         }
         view.blueButton.setOnClickListener {
-            Log.e("TAG", "blue button clicked")
             listener?.blueButtonPressed()
         }
         view.yellowButton.setOnClickListener {
-            Log.e("TAG", "yellow button clicked")
             listener?.yellowButtonPressed()
         }
         view.greenButton.setOnClickListener {
-            Log.e("TAG", "green button clicked")
             listener?.greenButtonPressed()
         }
 
@@ -63,7 +58,7 @@ class SimonViewFragment: Fragment() {
     fun runUIUpdate(args: List<Int>?) {
 
         activity?.let {activity ->
-            for (element in 0 until args!!.size) {
+            for (element in 0 until args!!.size ) {
                 val view = when (args[element]) {
                     0 -> redButton
                     1 -> blueButton

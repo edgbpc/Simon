@@ -24,46 +24,68 @@ class SimonModel {
     Ultra = 50
      */
 
-    private var gameMode: Int = 2
+    private var gameMode: Int = 0
 
     private var wasPlayerAnswerCorrect: Boolean? = null
     private var expectedAnswerIs: Int = 0
     //private var receivedAnswer: Int? = null
     private var currentPlayerPosition: Int = 0
-    private var gameBoardColors: List<Int> = emptyList()
+    private var gameBoardColors = ArrayList<Int>()
     private var playerScore: Int = 0
     private var numCorrectAnswersGiven: Int = 0
     private var gameWinner: Int = -1
+    private var roundWinner: Int = -1
+    private var numCorrectAnswersForARound: Int = 0
 
 
-    val round: Int = 0
+    private var round: Int = 0
+
+    fun addToGameBoardColors() {
+        if (gameBoardColors.size < gameMode){
+            gameBoardColors.add(Random.nextInt(0,4))
+        }
+
+    }
 
     fun resetGame(){
-        gameBoardColors = emptyList()
+        gameBoardColors = ArrayList<Int>()
         currentPlayerPosition = 0
         playerScore = 0
         numCorrectAnswersGiven = 0
         gameWinner = -1
+        roundWinner = -1
+        round = 1
+    }
+
+    fun prepareForNewRound(){
+        currentPlayerPosition = 0
+        roundWinner = -1
+        numCorrectAnswersForARound = 0
+        addToGameBoardColors()
 
     }
 
     fun determineIfExpectedAnswerWasGiven(receivedAnswer: Int) {
         expectedAnswerIs = gameBoardColors[currentPlayerPosition]
         if (receivedAnswer == expectedAnswerIs) {
-            Log.e("TAG", "Correct Answer Given")
             // award points
+            calculateScore()
             // advance position
             currentPlayerPosition++
-            numCorrectAnswersGiven++
+            numCorrectAnswersForARound = numCorrectAnswersForARound + 1
             // continue game
         } else {
-            Log.e("TAG", "Incorrect Answer Given")
             gameWinner = 0
             //game over
         }
-        if (numCorrectAnswersGiven == gameBoardColors.size){
+        if (numCorrectAnswersForARound == gameBoardColors.size){
+            roundWinner = 1
+            round++
+
+        }
+
+        if (round == gameMode){
             gameWinner = 1
-            Log.e("TAG", "All colors given")
         }
     }
 
@@ -75,9 +97,13 @@ class SimonModel {
         return playerScore
     }
 
-    fun getPlayerAnswer() {
+    fun getGameBoard(): List<Int> {
+        return gameBoardColors
 
+    }
 
+    fun isARoundWinner(): Int {
+        return roundWinner
     }
 
     fun calculateScore() {
@@ -86,27 +112,25 @@ class SimonModel {
 
     }
 
-    fun createAGameBoard(): List<Int>? {
-        Log.e("tag", "creating gameboard with difficulity " + gameMode)
-        if (gameMode == 2) {
-            gameBoardColors = List(Testing) { Random.nextInt(0, 4) }
-        }
-        if (gameMode == 3) {
-            gameBoardColors = List(Easy) { Random.nextInt(0, 4) }
-        }
-        if (gameMode == 5) {
-            gameBoardColors = List(Regular) { Random.nextInt(0, 4) }
-        }
-        if (gameMode == 10) {
-            gameBoardColors = List(Hard) { Random.nextInt(0, 4) }
-        }
-        if (gameMode == 50) {
-            gameBoardColors = List(Ultra) { Random.nextInt(0, 4) }
-        } else {
+    fun createAGameBoard() {
+//        if (gameMode == 2) {
+//            gameBoardColors = List(Testing) { Random.nextInt(0, 4) }
+//        }
+//        if (gameMode == 3) {
+//            gameBoardColors = List(Easy) { Random.nextInt(0, 4) }
+//        }
+//        if (gameMode == 5) {
+//            gameBoardColors = List(Regular) { Random.nextInt(0, 4) }
+//        }
+//        if (gameMode == 10) {
+//            gameBoardColors = List(Hard) { Random.nextInt(0, 4) }
+//        }
+//        if (gameMode == 50) {
+//            gameBoardColors = List(Ultra) { Random.nextInt(0, 4) }
+//        } else {
+//
+//        }
 
-        }
-
-        return gameBoardColors
     }
 
     fun setDifficulty(difficulty: String) {
@@ -122,7 +146,6 @@ class SimonModel {
         if (difficulty == "Ultra") {
             gameMode = Ultra
         }
-        Log.e("TAG", "Gamemode changed to " + gameMode)
     }
 }
 
