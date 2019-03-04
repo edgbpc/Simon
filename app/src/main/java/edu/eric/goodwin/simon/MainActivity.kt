@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
 
     private var simonViewFragment: SimonViewFragment? = null
     private var modelFragment: SimonModelFragment? = null
+    private var scoreViewFragment: ScoreViewFragment? = null
 
     private var gameModel: SimonModel? = SimonModel()
 
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
     }
 
     override fun startButtonPressed() {
+        //showScoreScreen()
         gameModel?.addToGameBoardColors()
         modelFragment?.startSequence()
     }
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
 
 
         } else if (gameModel?.isAWinner() == 0){
@@ -93,6 +96,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -109,6 +114,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
 
         } else if(gameModel?.isAWinner() == 0){
@@ -116,6 +123,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -131,6 +140,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
 
         } else if (gameModel?.isAWinner() == 0){
@@ -138,6 +149,8 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -153,12 +166,16 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
         } else if (gameModel?.isAWinner() == 0){
             Toast.makeText(applicationContext, "YOU LOST. Play again", Toast.LENGTH_SHORT).show()
             simonViewFragment?.enableStartButton()
             gameModel?.resetGame()
             simonViewFragment?.disableColorButtons()
+            showScoreScreen()
+
 
         }
         if (gameModel?.isARoundWinner() == 1){
@@ -166,5 +183,22 @@ class MainActivity : AppCompatActivity(), SimonViewFragment.StateListener, Simon
             modelFragment?.startSequence()
         }
     }
+
+fun showScoreScreen(){
+    scoreViewFragment = supportFragmentManager.findFragmentById(R.id.mainContainer) as? ScoreViewFragment
+    if (scoreViewFragment == null)
+    {
+        scoreViewFragment = ScoreViewFragment()
+        supportFragmentManager.beginTransaction()
+            .remove(simonViewFragment!!)
+            .add(R.id.mainContainer, scoreViewFragment!!)
+            .commit()
+
+
+    }
+
+
+
+}
 
 }

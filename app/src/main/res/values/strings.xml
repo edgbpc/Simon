@@ -13,4 +13,9 @@
     <string name="ultra">Ultra</string>
     <string name="play">Play</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_score">Your Score</string>
+    <string name="scoreplaceholder">scorePlaceholder</string>
+
 </resources>
