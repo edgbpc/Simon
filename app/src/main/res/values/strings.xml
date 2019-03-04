@@ -6,4 +6,11 @@
     <string name="green_button_text">Green</string>
     <string name="yellow_button_text">Yellow</string>
     <string name="start_button_text">Start</string>
+    <string name="select_difficulty">Select Difficulty</string>
+    <string name="easy">Easy</string>
+    <string name="regular">Regular</string>
+    <string name="hard">Hard</string>
+    <string name="ultra">Ultra</string>
+    <string name="play">Play</string>
+
 </resources>

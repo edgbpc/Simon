@@ -23,7 +23,7 @@ class SimonModel {
     Ultra = 50
      */
 
-    private val gameMode: Int = 2
+    private var gameMode: Int = 2
 
     private var wasPlayerAnswerCorrect: Boolean? = null
     private var expectedAnswerIs: Int = 0
@@ -35,7 +35,7 @@ class SimonModel {
 
     val round: Int = 0
 
-    fun determineIfExpectedAnswerWasGiven(){
+    fun determineIfExpectedAnswerWasGiven() {
         expectedAnswerIs = gameBoardColors[currentPlayerPosition]
         if (receivedAnswer == expectedAnswerIs) {
             // award points
@@ -48,8 +48,7 @@ class SimonModel {
         }
     }
 
-    fun getPlayerScore(): Int
-    {
+    fun getPlayerScore(): Int {
         return playerScore
     }
 
@@ -60,33 +59,47 @@ class SimonModel {
 
     fun calculateScore() {
         playerScore = playerScore + (10 * gameMode)
+        Log.e("TAG", "score is " + playerScore)
 
     }
 
     fun createAGameBoard(gameMode: Int): List<Int>? {
 
-        if (gameMode == 2){
-           gameBoardColors = List (Testing) { Random.nextInt(0, 4)}
+        if (gameMode == 2) {
+            gameBoardColors = List(Testing) { Random.nextInt(0, 4) }
         }
         if (gameMode == 3) {
-            gameBoardColors = List (Easy) { Random.nextInt(0, 4)}
+            gameBoardColors = List(Easy) { Random.nextInt(0, 4) }
         }
         if (gameMode == 5) {
-            gameBoardColors = List (Regular) { Random.nextInt(0, 4)}
+            gameBoardColors = List(Regular) { Random.nextInt(0, 4) }
         }
         if (gameMode == 10) {
-            gameBoardColors = List (Hard) { Random.nextInt(0, 4)}
+            gameBoardColors = List(Hard) { Random.nextInt(0, 4) }
         }
         if (gameMode == 50) {
             gameBoardColors = List(Ultra) { Random.nextInt(0, 4) }
-        }
-        else {
+        } else {
             Log.e("TAG", "Error - gameMode not selected.")
         }
 
         return gameBoardColors
+    }
 
-
-
+    fun setDifficulty(difficulty: String) {
+        if (difficulty == "Easy") {
+            gameMode = Easy
+        }
+        if (difficulty == "Regular") {
+            gameMode = Regular
+        }
+        if (difficulty == "Hard") {
+            gameMode = Hard
+        }
+        if (difficulty == "Ultra") {
+            gameMode = Ultra
+        }
+        Log.e("TAG", "Gamemode changed to " + gameMode)
     }
 }
+
