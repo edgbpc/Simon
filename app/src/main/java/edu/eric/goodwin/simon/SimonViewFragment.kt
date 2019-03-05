@@ -116,26 +116,26 @@ class SimonViewFragment: Fragment() {
                 }
 
                 if (args[element] == 0){
-                    redButtonAnimator?.startDelay = (element * 400).toLong()
+                    redButtonAnimator?.startDelay = (element * gameSpeed).toLong()
                     redButtonAnimator?.setDuration(gameSpeed)
                     redButtonAnimator?.start()
 
                 }
 
                 if (args[element] == 1){
-                    blueButtonAnimator?.startDelay = (element * 400).toLong()
+                    blueButtonAnimator?.startDelay = (element * gameSpeed).toLong()
                     blueButtonAnimator?.setDuration(gameSpeed)
                     blueButtonAnimator?.start()
                 }
 
                 if (args[element] == 2){
-                    yellowButtonAnimator?.startDelay = (element * 400).toLong()
+                    yellowButtonAnimator?.startDelay = (element * gameSpeed).toLong()
                     yellowButtonAnimator.setDuration(gameSpeed)
                     yellowButtonAnimator?.start()
                 }
 
                 if (args[element] == 3){
-                    greenButtonAnimator?.startDelay = (element * 400).toLong()
+                    greenButtonAnimator?.startDelay = (element * gameSpeed).toLong()
                     greenButtonAnimator?.setDuration(gameSpeed)
                     greenButtonAnimator?.start()
                 }

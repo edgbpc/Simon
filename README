@@ -1,12 +1,11 @@
-The main issue that I could not solve was in regards to increasing difficulty.
-Difficulty in my app is essentially the length of the game goes on and how fast the next button is flashed.
-based on the difficulty.
-I had found a way via Animator Set but then I could not support Lollipop.
-I also do not control how long a user has to make a selection.  I started to look into timer.schedule()
-but I would need to find a way to restart the timer for each round.
+Difficulty in my app is essentially the length of the game goes, how fast the next button is flashed.
+based on the difficulty, and how fast the flash color changes.  The speed of the flash is a bit difficult to tell while
+running but the difference is noticeable between Easy and Ultra
 
+I  do not control how long a user has to make a selection.  I started to look into timer.schedule()
+but I would need to find a way to restart the timer for each round.  If i had another few hours, I would go back to
+add this.
 
-Other then that,
 I have the four colors implemented, each one flashes their own color.  The set grows as a user selects correctly.
 Scores accumulate as long as the user wins the game.  The final score resets if the user loses a round.
 A round is one pass as the color set grows.  A game is when the color set as reach maximum based on difficulty.
